@@ -1,0 +1,65 @@
+  <div class="bkd">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Omint</a><button class="navbar-toggler navbar-toggler-right" (click)="collapsed = !collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive" [ngClass]="{collapse: collapsed}">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Sobre Nós</a></li>
+                    <li class="nav-item" [routerLink]="['/chat']" routerLinkActive="router-link-active" ><a class="nav-link" style="cursor: pointer;">Faça sua Cotação</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <div class="container mb-5">
+
+    <div class="row align-items-center">
+      <div class="container mx-auto">
+        <h3 class="text-white "><i class="fas fa-robot"></i>Fale com nosso Assistente Virtual</h3>
+      </div>
+    </div>
+
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-8">
+        <ul #scrollMe class="messages">
+          <div *ngFor="let msg of resultados ">
+            <li class="message appeared" [ngClass]="{'left':msg.remetente === 'boot',
+                          'right':msg.remetente === 'eu'     }">
+              <div class="avatar"><img [src]="msg.remetente === 'boot' ? '../../assets/img/animais.png' : '../../assets/img/pessoa.png'"  style="height: auto; over" alt=""></div>
+              <div class="text_wrapper">
+                <div class="text">
+                  <p class="time"> ({{msg.data | date:'HH:mm:ss'}})</p>
+                  {{msg.mensagem}}
+                </div>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row align-items-center justify-content-center">
+      <div class="col-sm-6">
+        <input type="text" class="form-control " maxlength="10" (keyup.enter)="sendMessage()" [(ngModel)]="msg" />
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-success sendbtn"  *ngIf="count < 2" (click)="sendMessage()"><i class="far fa-share-square"></i> Enviar</button>
+      </div>
+      <p class="text-white col-sm-4"  *ngIf="count >= 2" >Selecione uma opção</p>
+    </div>
+</div>
+        <!-- Footer-->
+        <footer class="bg-light py-2 fixed-bottom">
+          <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Omint</div></div>
+      </footer>
+      <!-- Bootstrap core JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+      <!-- Third party plugin JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+      <!-- Core theme JS-->
+      <!-- <script src="js/scripts.js"></script> -->
+  </div >
