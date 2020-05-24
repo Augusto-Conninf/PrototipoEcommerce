@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-import { Subject } from 'rxjs';
-import { isNumeric } from 'rxjs/util/isNumeric';
+import { MatDialog } from '@angular/material/dialog';
+import { VideoDialogComponent } from '../video-dialog/video-dialog.component';
 
 export interface Message {
   remetente?: string;
@@ -26,24 +26,25 @@ export class ChatComponent implements OnInit {
   idade: number;
   sexo: string;
 
-  constructor() {
-    this.initBoot()
+  constructor(public dialog: MatDialog) {
+    this.initBoot();
   }
   ngOnInit(): void {
     this.resultados.push({ remetente: 'boot', mensagem: 'Qual a sua idade?', data: new Date()});
   }
 
   initBoot() {
-    this.resultados = []
+    this.resultados = [];
   }
 
   async sendMessage() {
     this.resultados.push({ remetente: 'eu', mensagem: this.msg, data: new Date()});
+
     await this.delay(500);
     switch(this.count) {
       case 0: {
-        if (/^\d+$/.test(this.msg)) {
-          this.idade = Number.parseInt(this.msg);
+        if (/^\d+$/.test(this.msg.trim())) {
+          this.idade = Number.parseInt(this.msg.trim());
           this.resultados.push({ remetente: 'boot', mensagem: 'Que legal! e seu sexo ? (Masculino ou Feminino)', data: new Date()});
           this.count ++;
         } else {
@@ -52,20 +53,22 @@ export class ChatComponent implements OnInit {
         break;
       }
       case 1: {
-          if(this.msg === 'Masculino' || this.msg === 'Feminino') {
+          console.log(this.msg.toLowerCase().replace(/\s/g, ''));
+          if(this.msg.toLowerCase().replace(/\s/g, '') === 'masculino' || this.msg.toLowerCase().replace(/\s/g, '') === 'feminino') {
           this.resultados.push({ remetente: 'boot', mensagem: 'A Partir do seu perfil calculamos esses três planos.', data: new Date()});
           await this.delay(500);
           this.resultados.push({ remetente: 'boot', mensagem: 'Para escolher clique na opção que desejar..', data: new Date()});
+          await this.delay(500);
+          this.resultados.push({ remetente: 'boot', mensagem: 'cards', data: new Date()});
           this.count++;
+          this.openDialog();
           } else {
-            this.resultados.push({ remetente: 'boot', mensagem: 'Desculpa, não entendi. Pode repetir? (Masculino ou Feminino)', data: new Date()});
+            this.resultados.push
+            ({ remetente: 'boot', mensagem: 'Desculpa, não entendi. Pode repetir? (Masculino ou Feminino)', data: new Date()});
           }
 
           break;
     }
-
-   this.msg = '';
-
 }
 
     this.msg = '';
@@ -81,10 +84,18 @@ export class ChatComponent implements OnInit {
   }
 
   private removerAcentos(s) {
-    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
   delay(ms: number) {
       return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  openDialog(): void {
+    this.dialog.open(VideoDialogComponent, {
+      width: '200px',
+      height: '300px',
+
+    })
   }
 }

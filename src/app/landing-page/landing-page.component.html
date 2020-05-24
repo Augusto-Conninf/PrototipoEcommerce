@@ -6,9 +6,9 @@
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Omint</a><button class="navbar-toggler navbar-toggler-right" (click)="collapsed = !collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive" [ngClass]="{collapse: collapsed}">
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Sobre Nós</a></li>
-                    <li class="nav-item" [routerLink]="['/chat']" routerLinkActive="router-link-active" ><a class="nav-link" style="cursor: pointer;">Faça sua Cotação</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Fale Conosco</a></li>
+                  <li class="nav-item" [routerLink]="['/chat']" routerLinkActive="router-link-active" ><a class="nav-link" style="cursor: pointer;">Faça sua Cotação</a></li>
+                  <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="about.scrollIntoView({behavior:'smooth'})" style="cursor: pointer;" >Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" (click)="contact.scrollIntoView({behavior:'smooth'})" style="cursor: pointer;">Fale Conosco</a></li>
                 </ul>
             </div>
         </div>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quidem laboriosam quas obcaecati nisi, provident ullam voluptatibus omnis.</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Eu quero!</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger"  [routerLink]="['/chat']" routerLinkActive="router-link-active" >Eu quero!</a>
                     </div>
                 </div>
             </div>
@@ -38,13 +38,13 @@
                         <h2 class="text-muted mt-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h2>
                         <hr class="divider light my-4" />
                         <p class="text-muted-50 mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga repudiandae veniam aliquam velit delectus recusandae porro vel aspernatur, ratione, excepturi, tempora quod laborum tempore blanditiis eligendi adipisci nobis quisquam ad.</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#services">Fale conosco!</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger text-white" (click)="contact.scrollIntoView({behavior:'smooth'})" style="cursor: pointer;">Fale conosco!</a>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Services-->
-        <section class="page-section bg-primary" id="about">
+        <section class="page-section bg-primary" id="about" #about>
             <div class="container">
                 <h2 class="text-center mt-0 text-white">Sobre Nós</h2>
                 <hr class="divider my-4" />
@@ -89,7 +89,7 @@
         </section>
 
         <!-- Contact-->
-        <section class="page-section" id="contact">
+        <section class="page-section" id="contact" #contact>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
@@ -129,5 +129,5 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
       <!-- Core theme JS-->
-      <!-- <script src="js/scripts.js"></script> -->
+      <script src="../../../scripts.js"></script>
   </body>

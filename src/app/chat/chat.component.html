@@ -5,8 +5,8 @@
             <a class="navbar-brand js-scroll-trigger" href="#page-top">Omint</a><button class="navbar-toggler navbar-toggler-right" (click)="collapsed = !collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive" [ngClass]="{collapse: collapsed}">
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                  <li class="nav-item" [routerLink]="['/chat']" routerLinkActive="router-link-active" ><a class="nav-link" style="cursor: pointer;">Faça sua Cotação</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Sobre Nós</a></li>
-                    <li class="nav-item" [routerLink]="['/chat']" routerLinkActive="router-link-active" ><a class="nav-link" style="cursor: pointer;">Faça sua Cotação</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Fale Conosco</a></li>
                 </ul>
             </div>
@@ -17,7 +17,7 @@
 
     <div class="row align-items-center">
       <div class="container mx-auto">
-        <h3 class="text-white "><i class="fas fa-robot"></i>Fale com nosso Assistente Virtual</h3>
+        <h3 class="text-white text-center "><i class="fas fa-robot"></i>Fale com nosso Assistente Virtual</h3>
       </div>
     </div>
 
@@ -27,11 +27,108 @@
           <div *ngFor="let msg of resultados ">
             <li class="message appeared" [ngClass]="{'left':msg.remetente === 'boot',
                           'right':msg.remetente === 'eu'     }">
-              <div class="avatar"><img [src]="msg.remetente === 'boot' ? '../../assets/img/animais.png' : '../../assets/img/pessoa.png'"  style="height: auto; over" alt=""></div>
+              <div class="avatar"><img [src]="msg.remetente === 'boot' ? 'assets/img/animais.png' : 'assets/img/pessoa.png'"  style="height: auto;" alt=""></div>
               <div class="text_wrapper">
                 <div class="text">
-                  <p class="time"> ({{msg.data | date:'HH:mm:ss'}})</p>
+                  <p class="time" *ngIf="msg.mensagem === 'cards'"> ({{msg.data | date:'HH:mm:ss'}})</p>
                   {{msg.mensagem}}
+                </div>
+                <div class="cards" *ngIf="msg.mensagem === 'cards'">
+                  <div id="price">
+                    <!--price tab-->
+                    <div class="plan">
+                      <div class="plan-inner">
+                        <div class="entry-title">
+                          <h3>Basic Wash</h3>
+                          <div class="price">$25<span>/PER CAR</span>
+                          </div>
+                        </div>
+                        <div class="entry-content">
+                          <ul>
+                            <li><strong>1x</strong> option 1</li>
+                            <li><strong>2x</strong> option 2</li>
+                            <li><strong>3x</strong> option 3</li>
+                            <li><strong>Free</strong> option 4</li>
+                            <li><strong>Unlimited</strong> option 5</li>
+                          </ul>
+                        </div>
+                        <div class="btn">
+                          <a href="#">Order Now</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end of price tab-->
+                    <!--price tab-->
+                    <div class="plan basic">
+                      <div class="plan-inner">
+                        <div class="hot">hot</div>
+                        <div class="entry-title">
+                          <h3>Express Wash</h3>
+                          <div class="price">$50<span>/PER CAR</span>
+                          </div>
+                        </div>
+                        <div class="entry-content">
+                          <ul>
+                            <li><strong>1x</strong> option 1</li>
+                            <li><strong>2x</strong> option 2</li>
+                            <li><strong>3x</strong> option 3</li>
+                            <li><strong>Free</strong> option 4</li>
+                            <li><strong>Unlimited</strong> option 5</li>
+                          </ul>
+                        </div>
+                        <div class="btn">
+                          <a href="#">Order Now</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end of price tab-->
+                    <!--price tab-->
+                    <div class="plan standard">
+                      <div class="plan-inner">
+                        <div class="entry-title">
+                          <h3>Super Wash</h3>
+                          <div class="price">$75<span>/PER CAR</span>
+                          </div>
+                        </div>
+                        <div class="entry-content">
+                          <ul>
+                            <li><strong>2x</strong> Free Entrance</li>
+                            <li><strong>Free</strong> Snacks</li>
+                            <li><strong>Custom</strong> Swags</li>
+                            <li><strong>2x</strong> Certificate</li>
+                            <li><strong>Free</strong> Wifi</li>
+                          </ul>
+                        </div>
+                        <div class="btn">
+                          <a href="#">Order Now</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end of price tab-->
+                    <!--price tab-->
+                    <div class="plan ultimite">
+                      <div class="plan-inner">
+                        <div class="entry-title">
+                          <h3>Unlimited Wash</h3>
+                          <div class="price">$100<span>/PER CAR</span>
+                          </div>
+                        </div>
+                        <div class="entry-content">
+                          <ul>
+                            <li><strong>1x</strong> option 1</li>
+                            <li><strong>2x</strong> option 2</li>
+                            <li><strong>3x</strong> option 3</li>
+                            <li><strong>Free</strong> option 4</li>
+                            <li><strong>Unlimited</strong> option 5</li>
+                          </ul>
+                        </div>
+                        <div class="btn">
+                          <a href="#">Order Now</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end of price tab-->
+                  </div>
                 </div>
               </div>
             </li>
@@ -42,13 +139,13 @@
 
     <div class="row align-items-center justify-content-center">
       <div class="col-sm-6">
-        <input type="text" class="form-control " maxlength="10" (keyup.enter)="sendMessage()" [(ngModel)]="msg" />
+        <input [hidden]="count >= 2" type="text" class="form-control " maxlength="10" (keyup.enter)="sendMessage()" [(ngModel)]="msg" />
       </div>
       <div class="col-sm-2">
         <button class="btn btn-success sendbtn"  *ngIf="count < 2" (click)="sendMessage()"><i class="far fa-share-square"></i> Enviar</button>
       </div>
-      <p class="text-white col-sm-4"  *ngIf="count >= 2" >Selecione uma opção</p>
     </div>
+    <p class="text-white text-center mt-1"  *ngIf="count >= 2" >Selecione uma opção</p>
 </div>
         <!-- Footer-->
         <footer class="bg-light py-2 fixed-bottom">
